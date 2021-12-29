@@ -6,11 +6,30 @@ proxy:
   container-log-path: /container-logs
   template-path: ./template
   authentication: simple
-  admin-groups: admins
+
+#  social:
+#    facebook:
+#      app-id: yourfacebookappid
+#      app-secret: yourfacebookappsecret
+#    twitter:
+#      app-id: yourtwitterappid
+#      app-secret: yourtwitterappsecret
+#    google:
+#      app-id: yourgoogleappid
+#      app-secret: yourgoogleappsecret
+#    github:
+#      app-id: yourgithubappid
+#      app-secret: yourgithubappsecret
+#    linkedin:
+#      app-id: yourlinkedinappid
+#      app-secret: yourlinkedinappsecret
+
+#  admin-groups: admins
   hide-navbar: false
   logo-url: https://raw.githubusercontent.com/bouldermaettel/A848/main/data/SMC40%208.jpg
   landing-page: /
-  backend: docker
+  #docker, docker-swarm or kubernetes
+  container-backend: docker
   users:
   - name: admin
     password: admin
@@ -19,14 +38,14 @@ proxy:
     password: legalizeit
     groups: legal
   - name: illegal
-    password: dontlegalizeit
+    password: illegalizeit
     groups: illegal
   docker:
       internal-networking: true
       container-network: 'sp-net'
   specs:
   - id: neraa
-    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/neraa_logo.png?token=AQ3PRWZZOWGKBRXCEYSECK3BZRQQG
+    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/neraa_logo.png
     display-name: NERAA
     description: Anonymization application
     container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
@@ -36,7 +55,7 @@ proxy:
     container-network: "${proxy.docker.container-network}"
     container-volumes: ["/root/app:/mnt", "/root/app/www/training-data:/mnt/training-data"]
   - id: A848
-    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/A848_logo.png?token=AQ3PRW6UGKPMBRZU26SKKTTBZRQS6
+    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/A848_logo.png
     display-name: A848
     description: A848 duplicate finder
     container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3838)" ]
@@ -53,3 +72,4 @@ logging:
 #server:
 #  servlet:
 #    context-path:  /
+
