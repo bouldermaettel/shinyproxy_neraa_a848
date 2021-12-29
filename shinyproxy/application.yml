@@ -26,7 +26,7 @@ proxy:
       container-network: 'sp-net'
   specs:
   - id: neraa
-    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/A848_logo.png?token=AQ3PRW6272GHM5GEUWFE4PTBZRP7C
+    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/neraa_logo.png?token=AQ3PRWZZOWGKBRXCEYSECK3BZRQQG
     display-name: NERAA
     description: Anonymization application
     container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
@@ -36,7 +36,7 @@ proxy:
     container-network: "${proxy.docker.container-network}"
     container-volumes: ["/root/app:/mnt", "/root/app/www/training-data:/mnt/training-data"]
   - id: A848
-    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/A848_logo.png?token=AQ3PRW6272GHM5GEUWFE4PTBZRP7C
+    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/A848_logo.png?token=AQ3PRW6UGKPMBRZU26SKKTTBZRQS6
     display-name: A848
     description: A848 duplicate finder
     container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3838)" ]
