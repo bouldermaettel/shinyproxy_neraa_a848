@@ -1,0 +1,55 @@
+#https://lukesingham.com/shiny-containers-with-shinyproxy/
+
+proxy:
+  title: ShinyProxy
+  port: 8080
+  container-log-path: /container-logs
+  template-path: ./template
+  authentication: simple
+  admin-groups: admins
+  hide-navbar: false
+  logo-url: https://raw.githubusercontent.com/bouldermaettel/A848/main/data/SMC40%208.jpg
+  landing-page: /
+  backend: docker
+  users:
+  - name: admin
+    password: admin
+    groups: admins
+  - name: legal
+    password: legalizeit
+    groups: legal
+  - name: illegal
+    password: dontlegalizeit
+    groups: illegal
+  docker:
+      internal-networking: true
+      container-network: 'sp-net'
+  specs:
+  - id: neraa
+    logo-url:
+    display-name: NERAA
+    description: Anonymization application
+    container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
+    container-image: bouldermaettel/neraa
+    port: 3939
+    access-groups: [legal, admins]
+    container-network: "${proxy.docker.container-network}"
+    container-volumes: ["/root/app:/mnt", "/root/app/www/training-data:/mnt/training-data"]
+  - id: A848
+#    logo-url: https://raw.githubusercontent.com/bouldermaettel/A848/main/data/prntscreen.png
+    display-name: A848
+    description: A848 duplicate finder
+    container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3838)" ]
+    container-image: bouldermaettel/duplicate-finder
+    access-groups: [illegal, admins]
+    container-network: "${proxy.docker.container-network}"
+    container-volumes: ["/root/app/data:/home/bouldermaettel/Documents/A848data"]
+    port: 3838
+
+logging:
+  file:
+    log/shinyproxy.log
+
+#server:
+#  servlet:
+#    context-path:  /

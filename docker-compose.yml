@@ -1,0 +1,82 @@
+## set up the volume first
+#  docker volume create pg-data
+
+version: '3.8'
+
+networks:
+  sp-net:
+    name: sp-net
+#  customnetwork:
+#    ipam:
+#      config:
+#        - subnet: 172.20.0.0/16
+
+services:
+  db:
+    container_name: postgres-container
+    image: postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+    networks:
+      - sp-net
+#      customnetwork:
+#        ipv4_address: 172.20.0.6
+    ports:
+      - 5432:5432
+  duplicate-finder:
+    container_name: duplicate-finder
+    image: bouldermaettel/duplicate-finder
+    ports:
+      - 3838:3838
+    networks:
+      - sp-net
+#    networks:
+#      customnetwork:
+    depends_on:
+      - db
+  neraa:
+    container_name: neraa
+    image: bouldermaettel/neraa
+    ports:
+      - 3939:3939
+    networks:
+      - sp-net
+#    command: ['Rscript', '-e', "shiny::runApp('/app', host = '0.0.0.0', port = 3939)"]
+  shinyproxy:
+    container_name: sp-neraa-a848
+#    image: bouldermaettel/sp-neraa-a848
+    build: ./shinyproxy
+#    command: ['Rscript', '-e', "shiny::runApp('/app', host = '0.0.0.0', port = 3838)"]
+    ports:
+      - 8080:8080
+    environment:
+      - "WORK_DIR=${PWD}"
+    networks:
+      - sp-net
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./shinyproxy-logs/server:/log"
+      - "./shinyproxy-logs/container:/container-logs"
+      - "./shinyproxy:/opt/shinyproxy"
+
+volumes:
+  pg-data:
+
+#  pgadmin:
+#    container_name: pgadmin4_container
+#    image: dpage/pgadmin4
+#    restart: always
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: bouldermaettel@gmail.com
+#      PGADMIN_DEFAULT_PASSWORD: admin
+#    ports:
+#      - "5050:80"
+
+# docker kill $(docker ps -q)
+# start with: ~/postgres $ docker-compose up
+# stop with: ~/postgres $ docker-compose down
