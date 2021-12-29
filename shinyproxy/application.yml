@@ -26,7 +26,7 @@ proxy:
       container-network: 'sp-net'
   specs:
   - id: neraa
-    logo-url:
+    logo-url: https://raw.githubusercontent.com/bouldermaettel/shinyproxy_neraa_a848/master/shinyproxy/A848_logo.png?token=AQ3PRW5DJ7HB2GXSFPHD6YLBZRPGO
     display-name: NERAA
     description: Anonymization application
     container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
