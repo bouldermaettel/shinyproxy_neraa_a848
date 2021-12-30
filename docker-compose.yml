@@ -6,7 +6,7 @@ version: '3.8'
 networks:
   sp-net:
     name: sp-net
-# # customnetwork for fixed IPAddress
+# # customnetwork for fixed IPAddress (insted of sp-net)
 #  customnetwork:
 #    ipam:
 #      config:
@@ -25,8 +25,6 @@ services:
       POSTGRES_DB: postgres
     networks:
       - sp-net
-#      customnetwork:
-#        ipv4_address: 172.20.0.6
     ports:
       - 5432:5432
   duplicate-finder:
@@ -36,8 +34,6 @@ services:
       - 3838:3838
     networks:
       - sp-net
-#    networks:
-#      customnetwork:
     depends_on:
       - db
   neraa:
@@ -47,12 +43,9 @@ services:
       - 3939:3939
     networks:
       - sp-net
-#    command: ['Rscript', '-e', "shiny::runApp('/app', host = '0.0.0.0', port = 3939)"]
   shinyproxy:
     container_name: sp-neraa-a848
-#    image: bouldermaettel/sp-neraa-a848
     build: ./shinyproxy
-#    command: ['Rscript', '-e', "shiny::runApp('/app', host = '0.0.0.0', port = 3838)"]
     ports:
       - 8080:8080
     environment:
@@ -65,20 +58,25 @@ services:
       - "./shinyproxy-logs/container:/container-logs"
       - "./shinyproxy:/opt/shinyproxy"
 
+  pgadmin:
+    container_name: pgadmin4-container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: bouldermaettel@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - sp-net
+
 volumes:
   pg-data:
 
-#  pgadmin:
-#    container_name: pgadmin4_container
-#    image: dpage/pgadmin4
-#    restart: always
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: bouldermaettel@gmail.com
-#      PGADMIN_DEFAULT_PASSWORD: admin
-#    ports:
-#      - "5050:80"
+
 
 # docker kill $(docker ps -q)
 # start with: ~/postgres $ docker-compose up
 # stop with: ~/postgres $ docker-compose down
+# docker-compose down; docker-compose build; docker-compose up
 # docker-compose down ; docker-compose build ; docker-compose up
