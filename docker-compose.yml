@@ -81,3 +81,4 @@ volumes:
 # docker kill $(docker ps -q)
 # start with: ~/postgres $ docker-compose up
 # stop with: ~/postgres $ docker-compose down
+# docker-compose down ; docker-compose build ; docker-compose up
