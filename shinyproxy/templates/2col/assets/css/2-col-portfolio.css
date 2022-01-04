@@ -20,7 +20,22 @@
  */
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	/*background-color: rgba(14, 3, 5, 0.38);*/
 }
+
+/*.img.navbar-header{*/
+/*	font-size: 24px;*/
+/*}*/
+
+/*.container-fluid {*/
+/*	background-color: rgba(206, 31, 15, 0.97);*/
+/*	color: blue;*/
+/*	!*font-size: 24px;*!*/
+/*}*/
+
+/*.a.navbar-brand {*/
+/*	font-size: 24px; !important*/
+/*}*/
 
 .portfolio-item {
     margin-bottom: 25px;
@@ -39,8 +54,9 @@ footer {
 }
 .card-box {
 	background-clip: border-box;
-	border: 1px solid rgba(0,0,0,.125);
+	border: 3px solid rgba(19, 19, 19, 0.12);
 	border-radius: .25rem;
 	padding: 15px;
 	min-height: 460px;
+	background-color: rgba(238, 234, 234, 0.5)
 }
