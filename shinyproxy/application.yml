@@ -2,6 +2,7 @@
 # for custom templates https://github.com/openanalytics/shinyproxy-config-examples/tree/master/04-custom-html-template
 
 proxy:
+  default-max-instances: -1
   title: ShinyProxy
   port: 8080
   container-log-path: /container-logs
@@ -17,7 +18,7 @@ proxy:
   - name: matthias.mueller
     password: bouldermaettel@smc40
     groups: admin
-  - name: anouk.aquirre
+  - name: anouk.aguirre
     password: legal@smc
     groups: neraa
   - name: myrtha.naef
@@ -31,6 +32,7 @@ proxy:
       container-network: 'sp-net'
   specs:
   - id: neraa
+    max_instances: -1
     display-name: NERAA
     description: Anonymization application
     container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
