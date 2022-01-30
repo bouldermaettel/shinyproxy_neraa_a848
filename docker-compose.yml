@@ -1,5 +1,5 @@
 ## set up the volume first
-#  docker volume create pg-data
+#  docker volume create pg-data (not necessary)
 
 version: '3.8'
 
@@ -25,13 +25,14 @@ services:
       POSTGRES_DB: postgres
     networks:
       - sp-net
-    ports:
-      - 5432:5432
+    command: ["postgres", "-c", "log_statement=all"]
+#    ports:
+#      - 5432:5432
   duplicate-finder:
     container_name: duplicate-finder
     image: bouldermaettel/duplicate-finder
-    ports:
-      - 3838:3838
+#    ports:
+#      - 3838:3838
     networks:
       - sp-net
     depends_on:
@@ -39,8 +40,8 @@ services:
   neraa:
     container_name: neraa
     image: bouldermaettel/neraa
-    ports:
-      - 3939:3939
+#    ports:
+#      - 3939:3939
     networks:
       - sp-net
   shinyproxy:
@@ -57,21 +58,22 @@ services:
       - "./shinyproxy-logs/server:/log"
       - "./shinyproxy-logs/container:/container-logs"
       - "./shinyproxy:/opt/shinyproxy"
-
-  pgadmin:
-    container_name: pgadmin4-container
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: bouldermaettel@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    networks:
-      - sp-net
-
 volumes:
   pg-data:
+
+#  pgadmin:
+#    container_name: pgadmin4-container
+#    image: dpage/pgadmin4
+#    restart: always
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: bouldermaettel@gmail.com
+#      PGADMIN_DEFAULT_PASSWORD: admin
+#    ports:
+#      - "5050:80"
+#    networks:
+#      - sp-net
+
+
 
 
 
