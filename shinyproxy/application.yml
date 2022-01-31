@@ -27,6 +27,9 @@ proxy:
   - name: mock_user
     password: 123@abc
     groups: a848
+  - name: mock_superuser
+    password: 123@abc
+    groups: a848su
   docker:
       internal-networking: true
       container-network: 'sp-net'
