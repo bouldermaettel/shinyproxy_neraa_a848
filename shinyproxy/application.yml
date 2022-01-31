@@ -5,6 +5,7 @@ proxy:
   default-max-instances: -1
   title: ShinyProxy
   port: 8080
+  heartbeat-timeout: 120000
   container-log-path: /container-logs
   template-path: ./templates/2col
   authentication: simple
