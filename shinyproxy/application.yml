@@ -21,12 +21,18 @@ proxy:
     groups: admin
   - name: anouk.aguirre
     password: legal@smc
-    groups: neraa
+    groups: neraa_legal
+  - name: neraa
+    password: neraa@smc
+    groups: neraa_public
   - name: myrtha.naef
     password: illegal@smc
     groups: a848su
   - name: mock_user
     password: 123@abc
+    groups: a848
+  - name: a848
+    password: a848@smc
     groups: a848
   - name: mock_superuser
     password: 123@abc
@@ -42,10 +48,11 @@ proxy:
     container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
     container-image: bouldermaettel/neraa
     port: 3939
-    access-groups: [neraa, admin]
+    access-groups: [admin, neraa_legal, neraa_public]
     container-network: "${proxy.docker.container-network}"
     container-volumes: ["/root/app:/mnt", "/root/app/www/training-data:/mnt/training-data"]
   - id: A848
+    max-instances: -1
     display-name: A848
     description: A848 duplicate finder
     container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3838)" ]
