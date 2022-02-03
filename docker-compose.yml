@@ -85,4 +85,4 @@ volumes:
 # start with: ~/postgres $ docker-compose up
 # stop with: ~/postgres $ docker-compose down
 # docker-compose down; docker-compose build; docker-compose up
-# docker-compose down ; docker-compose build ; docker-compose up
+# docker-compose down ; ocker-compose up --build
