@@ -69,7 +69,8 @@ proxy:
     display-name: Pycharm
     description: Python and R IDE
     #    container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
-    container-image: jetbrains/projector-pycharm-c
+#    container-image: jetbrains/projector-pycharm-c
+    container-image: projectorimages/projector-pycharm-c
     port: 8887
     access-groups: [pycharm, admin]
     container-network: "${proxy.docker.container-network}"

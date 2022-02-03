@@ -33,7 +33,8 @@ services:
       - sp-net
   pycharm:
     container_name: projector-pycharm
-    image: jetbrains/projector-pycharm-c
+#    image: jetbrains/projector-pycharm-c
+    image: projectorimages/projector-pycharm-c
     volumes:
       - pycharm-data:/home/projector-user
     restart: always
