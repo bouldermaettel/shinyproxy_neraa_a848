@@ -75,6 +75,17 @@ proxy:
     access-groups: [pycharm, admin]
     container-network: "${proxy.docker.container-network}"
     container-volumes: ["pycharm-data:/home/projector-user"]
+  - id: pycharm-p
+    max_instances: -1
+    display-name: Pycharm Professional
+    description: Python and R IDE
+    #    container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
+    #    container-image: jetbrains/projector-pycharm-c
+    container-image: projectorimages/projector-pycharm-p
+    port: 8887
+    access-groups: [ pycharm, admin ]
+    container-network: "${proxy.docker.container-network}"
+    container-volumes: [ "pycharm-data:/home" ]
 
 logging:
   file:
