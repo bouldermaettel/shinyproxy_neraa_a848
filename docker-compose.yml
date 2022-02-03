@@ -31,7 +31,9 @@ services:
   duplicate-finder:
     container_name: duplicate-finder
     image: bouldermaettel/duplicate-finder
-#    ports:
+    restart: always
+
+    #    ports:
 #      - 3838:3838
     networks:
       - sp-net
@@ -40,7 +42,8 @@ services:
   neraa:
     container_name: neraa
     image: bouldermaettel/neraa
-#    ports:
+    restart: always
+    #    ports:
 #      - 3939:3939
     networks:
       - sp-net
@@ -49,6 +52,7 @@ services:
     build: ./shinyproxy
     ports:
       - 8080:8080
+    restart: always
     environment:
       - "WORK_DIR=${PWD}"
     networks:
