@@ -31,6 +31,14 @@ services:
     restart: always
     networks:
       - sp-net
+  pycharm:
+    container_name: projector-pycharm
+    image: jetbrains/projector-pycharm-c
+    volumes:
+      - pycharm-data:/home/projector-user
+    restart: always
+    networks:
+      - sp-net
   shinyproxy:
     container_name: sp-neraa-a848
     build: ./shinyproxy
@@ -48,5 +56,6 @@ services:
       - "./shinyproxy:/opt/shinyproxy"
 volumes:
   pg-data:
+  pycharm-data:
 
 # docker-compose down ; docker-compose up --build

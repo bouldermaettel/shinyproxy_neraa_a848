@@ -16,6 +16,9 @@ proxy:
   # docker, docker-swarm or kubernetes
 #  container-backend: docker
   users:
+  - name: brudis
+    password: brudis@smc40
+    groups: admin
   - name: matthias.mueller
     password: bouldermaettel@smc40
     groups: admin
@@ -60,6 +63,17 @@ proxy:
     access-groups: [a848su, a848, admin]
     container-network: "${proxy.docker.container-network}"
     port: 3838
+    specs:
+  - id: pycharm
+    max_instances: -1
+    display-name: Pycharm
+    description: Python and R IDE
+    #    container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
+    container-image: jetbrains/projector-pycharm-c
+    port: 8887
+    access-groups: [pycharm, admin]
+    container-network: "${proxy.docker.container-network}"
+    container-volumes: ["pycharm-data:/home/projector-user"]
 
 logging:
   file:
