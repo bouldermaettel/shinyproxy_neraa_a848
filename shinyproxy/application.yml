@@ -59,15 +59,9 @@ proxy:
     container-image: bouldermaettel/duplicate-finder
     access-groups: [a848su, a848, admin]
     container-network: "${proxy.docker.container-network}"
-#    container-volumes: ["/root/app/data:/home/bouldermaettel/Documents/A848data"]
     port: 3838
 
 logging:
   file:
     log/shinyproxy.log
 
-#server:
-#  servlet:
-#    context-path:  /
-
-# docker-compose down ; docker-compose build ; docker-compose up

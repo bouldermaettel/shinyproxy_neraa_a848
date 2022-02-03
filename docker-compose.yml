@@ -1,17 +1,8 @@
-## set up the volume first
-#  docker volume create pg-data (not necessary)
-
 version: '3.8'
 
 networks:
   sp-net:
     name: sp-net
-# # customnetwork for fixed IPAddress (insted of sp-net)
-#  customnetwork:
-#    ipam:
-#      config:
-#        - subnet: 172.20.0.0/16
-
 services:
   db:
     container_name: postgres-container
@@ -26,15 +17,10 @@ services:
     networks:
       - sp-net
     command: ["postgres", "-c", "log_statement=all"]
-#    ports:
-#      - 5432:5432
   duplicate-finder:
     container_name: duplicate-finder
     image: bouldermaettel/duplicate-finder
     restart: always
-
-    #    ports:
-#      - 3838:3838
     networks:
       - sp-net
     depends_on:
@@ -43,8 +29,6 @@ services:
     container_name: neraa
     image: bouldermaettel/neraa
     restart: always
-    #    ports:
-#      - 3939:3939
     networks:
       - sp-net
   shinyproxy:
@@ -65,24 +49,4 @@ services:
 volumes:
   pg-data:
 
-#  pgadmin:
-#    container_name: pgadmin4-container
-#    image: dpage/pgadmin4
-#    restart: always
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: bouldermaettel@gmail.com
-#      PGADMIN_DEFAULT_PASSWORD: admin
-#    ports:
-#      - "5050:80"
-#    networks:
-#      - sp-net
-
-
-
-
-
-# docker kill $(docker ps -q)
-# start with: ~/postgres $ docker-compose up
-# stop with: ~/postgres $ docker-compose down
-# docker-compose down; docker-compose build; docker-compose up
-# docker-compose down ; ocker-compose up --build
+# docker-compose down ; docker-compose up --build
