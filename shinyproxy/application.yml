@@ -63,7 +63,6 @@ proxy:
     access-groups: [a848su, a848, admin]
     container-network: "${proxy.docker.container-network}"
     port: 3838
-    specs:
 #  - id: pycharm
 #    max_instances: -1
 #    display-name: Pycharm
