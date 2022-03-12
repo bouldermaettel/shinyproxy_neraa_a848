@@ -31,6 +31,12 @@ services:
     restart: always
     networks:
       - sp-net
+  OrExt:
+    container_name: oracle
+    image: bouldermaettel/oracle
+    restart: always
+    networks:
+      - sp-net
 #  pycharm:
 #    container_name: projector-pycharm
 ##    image: jetbrains/projector-pycharm-c
@@ -66,6 +72,6 @@ services:
       - "./shinyproxy:/opt/shinyproxy"
 volumes:
   pg-data:
-  pycharm-data:
+#  pycharm-data:
 
 # docker-compose down ; docker-compose up --build

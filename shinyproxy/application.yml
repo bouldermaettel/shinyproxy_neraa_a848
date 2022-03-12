@@ -19,6 +19,9 @@ proxy:
   - name: brudis
     password: brudis@smc40
     groups: admin
+  - name: user
+    password: password
+    groups: sendr
   - name: matthias.mueller
     password: bouldermaettel@smc40
     groups: admin
@@ -63,6 +66,24 @@ proxy:
     access-groups: [a848su, a848, admin]
     container-network: "${proxy.docker.container-network}"
     port: 3838
+  - id: OrExt
+    max-instances: -1
+    display-name: OrExt
+    description: Oracle MEP extractor
+    container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 4040)" ]
+    container-image: bouldermaettel/oracle
+    access-groups: [admin]
+    container-network: "${proxy.docker.container-network}"
+    port: 4040
+#  - id: send
+#    max-instances: -1
+#    display-name: SEND
+#    description: SEND Demo
+#    container-cmd: ["R", "-e", "shiny::runApp('/home/sender')"]
+#    container-image: aloh/sendrdemo
+#    access-groups: [sendr, admin ]
+#    container-network: "${proxy.docker.container-network}"
+#    port: 6363
 #  - id: pycharm
 #    max_instances: -1
 #    display-name: Pycharm
