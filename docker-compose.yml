@@ -72,6 +72,6 @@ services:
       - "./shinyproxy:/opt/shinyproxy"
 volumes:
   pg-data:
-#  pycharm-data:
+  pycharm-data:
 
 # docker-compose down ; docker-compose up --build

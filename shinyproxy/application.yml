@@ -75,15 +75,6 @@ proxy:
     access-groups: [admin]
     container-network: "${proxy.docker.container-network}"
     port: 4040
-#  - id: send
-#    max-instances: -1
-#    display-name: SEND
-#    description: SEND Demo
-#    container-cmd: ["R", "-e", "shiny::runApp('/home/sender')"]
-#    container-image: aloh/sendrdemo
-#    access-groups: [sendr, admin ]
-#    container-network: "${proxy.docker.container-network}"
-#    port: 6363
 #  - id: pycharm
 #    max_instances: -1
 #    display-name: Pycharm
@@ -103,7 +94,7 @@ proxy:
     #    container-image: jetbrains/projector-pycharm-c
     container-image: projectorimages/projector-pycharm-p
     port: 8887
-    access-groups: [ pycharm, admin ]
+    access-groups: [pycharm, admin]
     container-network: "${proxy.docker.container-network}"
     container-volumes: ["pycharm-data:/home"]
 
