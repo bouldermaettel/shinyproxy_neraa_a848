@@ -83,7 +83,7 @@ proxy:
     container-image: alho94/sender-demo
     access-groups: [ sendr ]
     container-network: "${proxy.docker.container-network}"
-    port: 6363
+    port: 20000
 #  - id: pycharm
 #    max_instances: -1
 #    display-name: Pycharm
