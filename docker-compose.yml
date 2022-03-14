@@ -37,6 +37,12 @@ services:
     restart: always
     networks:
       - sp-net
+  SendigR:
+    container_name: sender-demo
+    image: alho94/sender-demo
+    restart: always
+    networks:
+      - sp-net
 #  pycharm:
 #    container_name: projector-pycharm
 ##    image: jetbrains/projector-pycharm-c
