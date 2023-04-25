@@ -31,12 +31,12 @@ services:
     restart: always
     networks:
       - sp-net
-  # OrExt:
-  #   container_name: oracle
-  #   image: bouldermaettel/oracle
-  #   restart: always
-  #   networks:
-  #     - sp-net
+  OrExt:
+    container_name: oracle
+    image: bouldermaettel/oracle
+    restart: always
+    networks:
+      - sp-net
   # SendigR:
   #   container_name: sender-demo
   #   image: alho94/sender-demo

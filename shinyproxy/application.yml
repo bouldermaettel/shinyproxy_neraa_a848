@@ -55,15 +55,15 @@ proxy:
 #     access-groups: [a848su, a848, admin]
 #     container-network: "${proxy.docker.container-network}"
 #     port: 3838
-#   - id: OrExt
-#     max-instances: -1
-#     display-name: OrExt
-#     description: Oracle MEP extractor
-#     container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 4040)" ]
-#     container-image: bouldermaettel/oracle
-#     access-groups: [admin]
-#     container-network: "${proxy.docker.container-network}"
-#     port: 4040
+  - id: OrExt
+    max-instances: -1
+    display-name: OrExt
+    description: Oracle MEP extractor
+    container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 4040)" ]
+    container-image: bouldermaettel/oracle
+    access-groups: [admin]
+    container-network: "${proxy.docker.container-network}"
+    port: 4040
 #   - id: SendigR
 #     max-instances: -1
 #     display-name: SendigR
