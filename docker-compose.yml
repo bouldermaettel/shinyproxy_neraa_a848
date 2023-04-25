@@ -4,45 +4,45 @@ networks:
   sp-net:
     name: sp-net
 services:
-  db:
-    container_name: postgres-container
-    image: postgres
-    volumes:
-      - pg-data:/var/lib/postgresql/data
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: postgres
-    networks:
-      - sp-net
-    command: ["postgres", "-c", "log_statement=all"]
-  duplicate-finder:
-    container_name: duplicate-finder
-    image: bouldermaettel/duplicate-finder
-    restart: always
-    networks:
-      - sp-net
-    depends_on:
-      - db
+  # db:
+  #   container_name: postgres-container
+  #   image: postgres
+  #   volumes:
+  #     - pg-data:/var/lib/postgresql/data
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_DB: postgres
+  #   networks:
+  #     - sp-net
+  #   command: ["postgres", "-c", "log_statement=all"]
+  # duplicate-finder:
+  #   container_name: duplicate-finder
+  #   image: bouldermaettel/duplicate-finder
+  #   restart: always
+  #   networks:
+  #     - sp-net
+  #   depends_on:
+  #     - db
   neraa:
     container_name: neraa
     image: bouldermaettel/neraa
     restart: always
     networks:
       - sp-net
-  OrExt:
-    container_name: oracle
-    image: bouldermaettel/oracle
-    restart: always
-    networks:
-      - sp-net
-  SendigR:
-    container_name: sender-demo
-    image: alho94/sender-demo
-    restart: always
-    networks:
-      - sp-net
+  # OrExt:
+  #   container_name: oracle
+  #   image: bouldermaettel/oracle
+  #   restart: always
+  #   networks:
+  #     - sp-net
+  # SendigR:
+  #   container_name: sender-demo
+  #   image: alho94/sender-demo
+  #   restart: always
+  #   networks:
+  #     - sp-net
 #  pycharm:
 #    container_name: projector-pycharm
 ##    image: jetbrains/projector-pycharm-c
@@ -52,15 +52,15 @@ services:
 #    restart: always
 #    networks:
 #      - sp-net
-  pycharm-p:
-    container_name: projector-pycharm-p
-    #    image: jetbrains/projector-pycharm-c
-    image: projectorimages/projector-pycharm-p
-    volumes:
-      - pycharm-data:/home
-    restart: always
-    networks:
-      - sp-net
+# pycharm-p:
+#   container_name: projector-pycharm-p
+#   #    image: jetbrains/projector-pycharm-c
+#   image: projectorimages/projector-pycharm-p
+#   volumes:
+#     - pycharm-data:/home
+#   restart: always
+#   networks:
+#     - sp-net
   shinyproxy:
     container_name: sp-neraa-a848
     build: ./shinyproxy
