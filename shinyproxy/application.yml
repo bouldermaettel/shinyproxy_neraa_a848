@@ -27,22 +27,11 @@ proxy:
     groups: admin
   - name: anouk.aguirre
     password: legal@smc
-    groups: neraa_legal
+    groups: neraa_
   - name: neraa
     password: neraa@smc
     groups: neraa_public
-  - name: myrtha.naef
-    password: illegal@smc
-    groups: a848su
-  - name: mock_user
-    password: 123@abc
-    groups: a848
-  - name: a848
-    password: a848@smc
-    groups: a848
-  - name: mock_superuser
-    password: 123@abc
-    groups: a848su
+
   docker:
       internal-networking: true
       container-network: 'sp-net'
@@ -57,33 +46,33 @@ proxy:
     access-groups: [admin, neraa_legal, neraa_public]
     container-network: "${proxy.docker.container-network}"
     container-volumes: ["/root/app:/mnt", "/root/app/www/training-data:/mnt/training-data"]
-  - id: A848
-    max-instances: -1
-    display-name: A848
-    description: A848 duplicate finder
-    container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3838)" ]
-    container-image: bouldermaettel/duplicate-finder
-    access-groups: [a848su, a848, admin]
-    container-network: "${proxy.docker.container-network}"
-    port: 3838
-  - id: OrExt
-    max-instances: -1
-    display-name: OrExt
-    description: Oracle MEP extractor
-    container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 4040)" ]
-    container-image: bouldermaettel/oracle
-    access-groups: [admin]
-    container-network: "${proxy.docker.container-network}"
-    port: 4040
-  - id: SendigR
-    max-instances: -1
-    display-name: SendigR
-    description: Send Demo SMC 4.0
-#    container-cmd: [ "R", "-e", "shiny::runApp('/home/sender', port = 20000)" ]
-    container-image: alho94/sender-demo
-    access-groups: [ sendr ]
-    container-network: "${proxy.docker.container-network}"
-    port: 20000
+#   - id: A848
+#     max-instances: -1
+#     display-name: A848
+#     description: A848 duplicate finder
+#     container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3838)" ]
+#     container-image: bouldermaettel/duplicate-finder
+#     access-groups: [a848su, a848, admin]
+#     container-network: "${proxy.docker.container-network}"
+#     port: 3838
+#   - id: OrExt
+#     max-instances: -1
+#     display-name: OrExt
+#     description: Oracle MEP extractor
+#     container-cmd: [ "R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 4040)" ]
+#     container-image: bouldermaettel/oracle
+#     access-groups: [admin]
+#     container-network: "${proxy.docker.container-network}"
+#     port: 4040
+#   - id: SendigR
+#     max-instances: -1
+#     display-name: SendigR
+#     description: Send Demo SMC 4.0
+#     container-cmd: [ "R", "-e", "shiny::runApp('/home/sender', port = 20000)" ]
+#     container-image: alho94/sender-demo
+#     access-groups: [ sendr ]
+#     container-network: "${proxy.docker.container-network}"
+#     port: 20000
 #  - id: pycharm
 #    max_instances: -1
 #    display-name: Pycharm
@@ -95,17 +84,17 @@ proxy:
 #    access-groups: [pycharm, admin]
 #    container-network: "${proxy.docker.container-network}"
 #    container-volumes: ["pycharm-data:/home/projector-user"]
-  - id: pycharm-p
-    max_instances: -1
-    display-name: Pycharm Professional
-    description: Python and R IDE
-    #    container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
-    #    container-image: jetbrains/projector-pycharm-c
-    container-image: projectorimages/projector-pycharm-p
-    port: 8887
-    access-groups: [pycharm, admin]
-    container-network: "${proxy.docker.container-network}"
-    container-volumes: ["pycharm-data:/home"]
+# - id: pycharm-p
+#   max_instances: -1
+#   display-name: Pycharm Professional
+#   description: Python and R IDE
+#   #    container-cmd: ["R", "-e", "shiny::runApp('/root/app', host = '0.0.0.0', port = 3939)"]
+#   #    container-image: jetbrains/projector-pycharm-c
+#   container-image: projectorimages/projector-pycharm-p
+#   port: 8887
+#   access-groups: [pycharm, admin]
+#   container-network: "${proxy.docker.container-network}"
+#   container-volumes: ["pycharm-data:/home"]
 
 logging:
   file:
